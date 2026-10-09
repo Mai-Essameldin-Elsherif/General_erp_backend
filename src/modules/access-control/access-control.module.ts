@@ -1,9 +1,14 @@
 import { Module } from '@nestjs/common';
-import { AccessControlController } from './access-control.controller.js';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AccessControlService } from './access-control.service.js';
+import { AccessControlController } from './access-control.controller.js';
+import { Permission } from './entities/permission.entity.js';
+import { RolesGuard } from './guards/roles.guard.js';
 
 @Module({
+  imports: [TypeOrmModule.forFeature([Permission])],
   controllers: [AccessControlController],
-  providers: [AccessControlService]
+  providers: [AccessControlService, RolesGuard],
+  exports: [AccessControlService, RolesGuard],
 })
 export class AccessControlModule {}
