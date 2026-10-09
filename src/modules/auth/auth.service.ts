@@ -2,6 +2,7 @@ import {
     Injectable,
     ConflictException,
     UnauthorizedException,
+    NotFoundException,
   } from '@nestjs/common';
   import { InjectRepository } from '@nestjs/typeorm';
   import { Repository } from 'typeorm';
@@ -53,6 +54,8 @@ import {
       if (!user) {
         throw new UnauthorizedException('Invalid credentials');
       }
+
+      
   
       const isPasswordValid = await bcrypt.compare(password, user.passwordHash);
       if (!isPasswordValid) {
@@ -70,4 +73,17 @@ import {
         user: userData,
       };
     }
+
+    async getProfile(userId: string) {
+        const user = await this.userRepository.findOne({ 
+          where: { id: userId }
+        });
+        
+        if (!user) {
+          throw new NotFoundException('User not found');
+        }
+        
+        const { passwordHash, ...result } = user;
+        return result;
+      }
   }
