@@ -5,6 +5,10 @@ import { AuthModule } from './modules/auth/auth.module.js';
 import { AccessControlModule } from './modules/access-control/access-control.module.js';
 import { OrganizationModule } from './modules/organization/organization.module.js';
 import { AuditModule } from './modules/audit/audit.module.js';
+import { CategoriesModule } from './modules/categories/categories.module.js';
+import { ProductsModule } from './modules/products/products.module.js';
+import { WarehousesModule } from './modules/warehouses/warehouses.module.js';
+import { ProcurementModule } from './modules/procurement/procurement.module.js';
 
 @Module({
   imports: [
@@ -30,6 +34,10 @@ import { AuditModule } from './modules/audit/audit.module.js';
     AccessControlModule,
     OrganizationModule,
     AuditModule,
+    CategoriesModule,
+    ProductsModule,
+    WarehousesModule,
+    ProcurementModule,
   ],
 })
 export class AppModule {}
