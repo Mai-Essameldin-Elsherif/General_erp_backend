@@ -20,9 +20,16 @@ export class AuthController {
     return this.authService.login(loginDto);
   }
 
-  @Get('profile')
-  async getProfile(@Req() req: Request & { user?: { id: string } }) {
-    const userId = req.user?.id as string; 
-    return this.authService.getProfile(userId);
-  }
+  @Post('refresh')
+@HttpCode(HttpStatus.OK)
+async refresh(@Req() req: Request & { user?: any }) {
+ 
+  return this.authService.refreshToken(req.user);
+}
+
+@Get('me')
+async getProfile(@Req() req: Request & { user?: { id: string } }) {
+  const userId = req.user?.id as string;
+  return this.authService.getProfile(userId);
+}
 }
