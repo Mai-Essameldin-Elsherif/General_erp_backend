@@ -1,0 +1,10 @@
+import { Routes, Route, Navigate } from 'react-router-dom';
+
+export default function AppRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<div className="p-8 text-2xl font-bold">General ERP Dashboard</div>} />
+     
+    </Routes>
+  );
+}
