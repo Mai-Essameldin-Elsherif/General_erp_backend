@@ -1,54 +1,24 @@
-import {
-  CanActivate,
-  ExecutionContext,
-  Injectable,
-  UnauthorizedException,
-} from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { JwtService } from '@nestjs/jwt';
-import { Request } from 'express';
-
-export interface AuthenticatedRequest extends Request {
-  user?: {
-    id: string;
-    email: string;
-    role: any;
-  };
-}
+import { Injectable, ExecutionContext } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { Reflector } from '@nestjs/core';
+import { IS_PUBLIC_KEY } from '../decorators/public.decorator.js';
 
 @Injectable()
-export class JwtAuthGuard implements CanActivate {
-  constructor(
-    private readonly jwtService: JwtService,
-    private readonly configService: ConfigService,
-  ) {}
+export class JwtAuthGuard extends AuthGuard('jwt') {
+  constructor(private reflector: Reflector) {
+    super();
+  }
 
-  async canActivate(context: ExecutionContext): Promise<boolean> {
-    const request = context.switchToHttp().getRequest<AuthenticatedRequest>();
-    const authHeader = request.headers.authorization;
-
-    if (!authHeader) {
-      throw new UnauthorizedException('Authorization header is missing');
+  canActivate(context: ExecutionContext) {
+    // Check if the route or its controller is marked @Public()
+    const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC_KEY, [
+      context.getHandler(),
+      context.getClass(),
+    ]);
+    if (isPublic) {
+      return true; // Skip JWT validation for public routes
     }
-
-    const [bearer, token] = authHeader.split(' ');
-    if (bearer !== 'Bearer' || !token) {
-      throw new UnauthorizedException('Invalid authorization token format. Expected "Bearer <token>"');
-    }
-
-    try {
-      const secret = this.configService.get<string>('JWT_SECRET') || 'default_secret';
-      const payload = await this.jwtService.verifyAsync(token, { secret });
-
-      request.user = {
-        id: payload.sub,
-        email: payload.email,
-        role: payload.role,
-      };
-
-      return true;
-    } catch {
-      throw new UnauthorizedException('Invalid or expired authentication token');
-    }
+    // Otherwise, run the standard Passport JWT validation
+    return super.canActivate(context);
   }
 }

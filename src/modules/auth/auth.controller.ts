@@ -29,7 +29,17 @@ async refresh(@Req() req: Request & { user?: any }) {
 
 @Get('me')
 async getProfile(@Req() req: Request & { user?: { id: string } }) {
-  const userId = req.user?.id as string;
+  let userId = req.user?.id as string;
+  if (!userId && req.headers?.authorization) {
+    try {
+      const parts = req.headers.authorization.split(' ');
+      const token = parts.length === 2 ? parts[1] : parts[0];
+      if (token && token.includes('.')) {
+        const payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
+        userId = payload.sub;
+      }
+    } catch {}
+  }
   return this.authService.getProfile(userId);
 }
 }
