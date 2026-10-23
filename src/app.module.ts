@@ -5,10 +5,6 @@ import { AuthModule } from './modules/auth/auth.module.js';
 import { AccessControlModule } from './modules/access-control/access-control.module.js';
 import { OrganizationModule } from './modules/organization/organization.module.js';
 import { AuditModule } from './modules/audit/audit.module.js';
-import { RolesModule } from './modules/roles/roles.module.js';
-import { DepartmentsModule } from './modules/departments/departments.module.js';
-import { BranchesModule } from './modules/branches/branches.module.js';
-import { UsersModule } from './modules/users/users.module.js';
 
 @Module({
   imports: [
@@ -34,10 +30,6 @@ import { UsersModule } from './modules/users/users.module.js';
     AccessControlModule,
     OrganizationModule,
     AuditModule,
-    RolesModule,
-    UsersModule,
-    BranchesModule,
-    DepartmentsModule,
   ],
 })
 export class AppModule {}
