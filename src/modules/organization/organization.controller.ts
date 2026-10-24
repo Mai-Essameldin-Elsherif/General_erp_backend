@@ -13,23 +13,25 @@ export class OrganizationController {
   constructor(private readonly organizationService: OrganizationService) {}
 
   @Post()
-  @Roles(UserRole.ADMIN)
+  @Roles(UserRole.ADMIN, UserRole.MANAGER)
   async create(@Body() createDto: CreateOrganizationDto) {
     return this.organizationService.create(createDto);
   }
 
   @Get()
+  @Roles(UserRole.ADMIN, UserRole.MANAGER)
   async findAll() {
     return this.organizationService.findAll();
   }
 
   @Get(':id')
+  @Roles(UserRole.ADMIN, UserRole.MANAGER)
   async findOne(@Param('id') id: string) {
     return this.organizationService.findOne(id);
   }
 
   @Patch(':id')
-  @Roles(UserRole.ADMIN)
+  @Roles(UserRole.ADMIN, UserRole.MANAGER)
   async update(
     @Param('id') id: string,
     @Body() updateDto: UpdateOrganizationDto,
