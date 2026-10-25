@@ -1,8 +1,8 @@
 import { Controller, Get, Post, Body, Patch, Param } from '@nestjs/common';
-import { BillingService } from './billing.service';
-import { CreateInvoiceDto } from './dto/create-invoice.dto';
-import { UpdateInvoiceStatusDto } from './dto/update-invoice-status.dto';
-import { CreatePaymentDto } from './dto/create-payment.dto';
+import { BillingService } from './billing.service.js';
+import { CreateInvoiceDto } from './dto/create-invoice.dto.js';
+import { UpdateInvoiceStatusDto } from './dto/update-invoice-status.dto.js';
+import { CreatePaymentDto } from './dto/create-payment.dto.js';
 
 @Controller('api/v1')
 export class BillingController {

@@ -1,12 +1,12 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
-import { SalesOrder } from './sales-order.entity';
+import { SalesOrder } from './sales-order.entity.js';
 
 @Entity('sales_order_items')
 export class SalesOrderItem {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => SalesOrder, order => order.items, { onDelete: 'CASCADE' })
+  @ManyToOne(() => SalesOrder, (order: any) => order.items, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'sales_order_id' })
   salesOrder: SalesOrder;
 

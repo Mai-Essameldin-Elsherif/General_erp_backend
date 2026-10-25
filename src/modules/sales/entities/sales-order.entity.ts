@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
-import { Customer } from '../../crm/entities/customer.entity';
-import { SalesOrderItem } from './sales-order-item.entity';
+import { Customer } from '../../crm/entities/customer.entity.js';
+import { SalesOrderItem } from './sales-order-item.entity.js';
 
 export enum OrderStatus {
   PENDING = 'PENDING',
@@ -28,7 +28,7 @@ export class SalesOrder {
   @Column({ type: 'decimal', precision: 12, scale: 2, default: 0 })
   total_amount: number;
 
-  @OneToMany(() => SalesOrderItem, item => item.salesOrder, { cascade: true })
+  @OneToMany(() => SalesOrderItem, (item: any) => item.salesOrder, { cascade: true })
   items: SalesOrderItem[];
 
   @CreateDateColumn()

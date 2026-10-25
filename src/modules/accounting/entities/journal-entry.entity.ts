@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, OneToMany } from 'typeorm';
-import { JournalItem } from './journal-item.entity';
+import { JournalItem } from './journal-item.entity.js';
 
 @Entity('journal_entries')
 export class JournalEntry {
@@ -15,7 +15,7 @@ export class JournalEntry {
   @Column({ type: 'text', nullable: true })
   description: string;
 
-  @OneToMany(() => JournalItem, item => item.journalEntry, { cascade: true })
+  @OneToMany(() => JournalItem, (item: any) => item.journalEntry, { cascade: true })
   items: JournalItem[];
 
   @CreateDateColumn()

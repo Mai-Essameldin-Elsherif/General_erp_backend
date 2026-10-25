@@ -1,9 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { SalesOrder, OrderStatus } from './entities/sales-order.entity';
-import { CreateSalesOrderDto } from './dto/create-sales-order.dto';
-import { UpdateOrderStatusDto } from './dto/update-order-status.dto';
+import { SalesOrder, OrderStatus } from './entities/sales-order.entity.js';
+import { CreateSalesOrderDto } from './dto/create-sales-order.dto.js';
+import { UpdateOrderStatusDto } from './dto/update-order-status.dto.js';
 
 @Injectable()
 export class SalesService {
@@ -14,7 +14,7 @@ export class SalesService {
 
   async create(createDto: CreateSalesOrderDto): Promise<SalesOrder> {
     // حساب الإجمالي أوتوماتيكياً
-    const total_amount = createDto.items.reduce((sum, item) => sum + (item.quantity * item.unit_price), 0);
+    const total_amount = createDto.items.reduce((sum: number, item: any) => sum + (item.quantity * item.unit_price), 0);
     
     // توليد رقم أمر البيع (يمكن تطويره لاحقاً ليكون تسلسلياً)
     const order_number = `SO-${Date.now()}`;
@@ -30,13 +30,13 @@ export class SalesService {
   }
 
   async findAll(): Promise<SalesOrder[]> {
-    return await this.salesOrderRepo.find({ relations: ['customer', 'items'] });
+    return await this.salesOrderRepo.find({ relations: { customer: true, items: true } });
   }
 
   async findOne(id: string): Promise<SalesOrder> {
     const order = await this.salesOrderRepo.findOne({ 
       where: { id },
-      relations: ['customer', 'items'] 
+      relations: { customer: true, items: true } 
     });
     
     if (!order) {
