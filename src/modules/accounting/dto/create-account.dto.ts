@@ -1,5 +1,5 @@
 import { IsString, IsEnum, IsNotEmpty } from 'class-validator';
-import { AccountType } from '../entities/chart-of-account.entity';
+import { AccountType } from '../entities/chart-of-account.entity.js';
 
 export class CreateAccountDto {
   @IsString()

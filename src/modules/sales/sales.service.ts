@@ -1,9 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { SalesOrder, OrderStatus } from './entities/sales-order.entity';
-import { CreateSalesOrderDto } from './dto/create-sales-order.dto';
-import { UpdateOrderStatusDto } from './dto/update-order-status.dto';
+import { SalesOrder, OrderStatus } from './entities/sales-order.entity.js';
+import { CreateSalesOrderDto } from './dto/create-sales-order.dto.js';
+import { UpdateOrderStatusDto } from './dto/update-order-status.dto.js';
 
 @Injectable()
 export class SalesService {
@@ -30,15 +30,23 @@ export class SalesService {
   }
 
   async findAll(): Promise<SalesOrder[]> {
-    return await this.salesOrderRepo.find({ relations: ['customer', 'items'] });
+    return await this.salesOrderRepo.find({
+      relations: {
+        customer: true,
+        items: true,
+      },
+    });
   }
 
   async findOne(id: string): Promise<SalesOrder> {
-    const order = await this.salesOrderRepo.findOne({ 
+    const order = await this.salesOrderRepo.findOne({
       where: { id },
-      relations: ['customer', 'items'] 
+      relations: {
+        customer: true,
+        items: true,
+      },
     });
-    
+
     if (!order) {
       throw new NotFoundException(`Sales Order with ID ${id} not found`);
     }

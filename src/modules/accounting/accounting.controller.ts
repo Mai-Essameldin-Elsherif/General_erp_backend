@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Param } from '@nestjs/common';
-import { AccountingService } from './accounting.service';
-import { CreateAccountDto } from './dto/create-account.dto';
-import { CreateJournalEntryDto } from './dto/create-journal-entry.dto';
+import { AccountingService } from './accounting.service.js';
+import { CreateAccountDto } from './dto/create-account.dto.js';
+import { CreateJournalEntryDto } from './dto/create-journal-entry.dto.js';
 
 @Controller('api/v1')
 export class AccountingController {

@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, OneToMany } from 'typeorm';
-import { JournalItem } from './journal-item.entity';
+import { JournalItem } from './journal-item.entity.js';
 
 @Entity('journal_entries')
 export class JournalEntry {

@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
-import { Invoice } from './invoice.entity';
+import { Invoice } from './invoice.entity.js';
 
 export enum PaymentMethod {
   CASH = 'CASH',

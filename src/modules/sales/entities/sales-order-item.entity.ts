@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
-import { SalesOrder } from './sales-order.entity';
+import { SalesOrder } from './sales-order.entity.js';
 
 @Entity('sales_order_items')
 export class SalesOrderItem {

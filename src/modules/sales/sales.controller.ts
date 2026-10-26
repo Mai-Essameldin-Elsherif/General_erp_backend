@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param } from '@nestjs/common';
-import { SalesService } from './sales.service';
-import { CreateSalesOrderDto } from './dto/create-sales-order.dto';
-import { UpdateOrderStatusDto } from './dto/update-order-status.dto';
+import { SalesService } from './sales.service.js';
+import { CreateSalesOrderDto } from './dto/create-sales-order.dto.js';
+import { UpdateOrderStatusDto } from './dto/update-order-status.dto.js';
 
 @Controller('api/v1/sales-orders')
 export class SalesController {

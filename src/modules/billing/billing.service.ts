@@ -1,11 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Invoice, InvoiceStatus } from './entities/invoice.entity';
-import { Payment } from './entities/payment.entity';
-import { CreateInvoiceDto } from './dto/create-invoice.dto';
-import { UpdateInvoiceStatusDto } from './dto/update-invoice-status.dto';
-import { CreatePaymentDto } from './dto/create-payment.dto';
+import { Invoice, InvoiceStatus } from './entities/invoice.entity.js';
+import { Payment } from './entities/payment.entity.js';
+import { CreateInvoiceDto } from './dto/create-invoice.dto.js';
+import { UpdateInvoiceStatusDto } from './dto/update-invoice-status.dto.js';
+import { CreatePaymentDto } from './dto/create-payment.dto.js';
 
 @Injectable()
 export class BillingService {
@@ -58,6 +58,6 @@ export class BillingService {
   }
 
   async findAllPayments(): Promise<Payment[]> {
-    return await this.paymentRepo.find({ relations: ['invoice'] });
+    return await this.paymentRepo.find({ relations: { invoice: true } });
   }
 }

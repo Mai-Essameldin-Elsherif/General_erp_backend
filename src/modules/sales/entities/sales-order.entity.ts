@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
-import { Customer } from '../../crm/entities/customer.entity';
-import { SalesOrderItem } from './sales-order-item.entity';
+import { Customer } from '../../crm/entities/customer.entity.js';
+import { SalesOrderItem } from './sales-order-item.entity.js';
 
 export enum OrderStatus {
   PENDING = 'PENDING',

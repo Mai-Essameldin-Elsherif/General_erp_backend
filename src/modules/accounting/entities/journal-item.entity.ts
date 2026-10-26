@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
-import { JournalEntry } from './journal-entry.entity';
-import { ChartOfAccount } from './chart-of-account.entity';
+import { JournalEntry } from './journal-entry.entity.js';
+import { ChartOfAccount } from './chart-of-account.entity.js';
 
 @Entity('journal_items')
 export class JournalItem {

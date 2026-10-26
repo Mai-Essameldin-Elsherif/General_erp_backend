@@ -1,10 +1,10 @@
 import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { ChartOfAccount } from './entities/chart-of-account.entity';
-import { JournalEntry } from './entities/journal-entry.entity';
-import { CreateAccountDto } from './dto/create-account.dto';
-import { CreateJournalEntryDto } from './dto/create-journal-entry.dto';
+import { ChartOfAccount } from './entities/chart-of-account.entity.js';
+import { JournalEntry } from './entities/journal-entry.entity.js';
+import { CreateAccountDto } from './dto/create-account.dto.js';
+import { CreateJournalEntryDto } from './dto/create-journal-entry.dto.js';
 
 @Injectable()
 export class AccountingService {
@@ -62,15 +62,25 @@ export class AccountingService {
   }
 
   async findAllJournalEntries(): Promise<JournalEntry[]> {
-    return await this.journalRepo.find({ relations: ['items', 'items.account'] });
+    return await this.journalRepo.find({
+      relations: {
+        items: {
+          account: true,
+        },
+      },
+    });
   }
 
   async findOneJournalEntry(id: string): Promise<JournalEntry> {
-    const entry = await this.journalRepo.findOne({ 
+    const entry = await this.journalRepo.findOne({
       where: { id },
-      relations: ['items', 'items.account'] 
+      relations: {
+        items: {
+          account: true,
+        },
+      },
     });
-    
+
     if (!entry) {
       throw new NotFoundException(`Journal Entry ${id} not found`);
     }
