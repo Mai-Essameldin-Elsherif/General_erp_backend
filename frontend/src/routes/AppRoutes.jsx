@@ -12,6 +12,10 @@ import OrganizationPage from '../pages/organization/OrganizationPage';
 import AuditLogsPage from '../pages/audit-logs/AuditLogsPage';
 import WishlistPage from '../pages/wishlist/WishlistPage';
 import ReviewsPage from '../pages/reviews/ReviewsPage';
+import CategoriesPage from '../pages/CategoriesPage';
+import ProductsPage from '../pages/ProductsPage';
+import WarehousesPage from '../pages/WarehousesPage';
+import ProcurementPage from '../pages/ProcurementPage';
 
 export default function AppRoutes() {
   return (
@@ -91,12 +95,12 @@ export default function AppRoutes() {
         <Route path="/wishlist" element={<WishlistPage />} />
         <Route path="/reviews" element={<ReviewsPage />} />
 
-        {/* Teammate Modules (Redirect to Dashboard to prevent inert/blank pages) */}
-        <Route path="/products" element={<Navigate to="/dashboard" replace />} />
-        <Route path="/categories" element={<Navigate to="/dashboard" replace />} />
-        <Route path="/warehouses" element={<Navigate to="/dashboard" replace />} />
+        {/* Inventory & Supply Modules */}
+        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/categories" element={<CategoriesPage />} />
+        <Route path="/warehouses" element={<WarehousesPage />} />
+        <Route path="/procurement" element={<ProcurementPage />} />
         <Route path="/sales" element={<Navigate to="/dashboard" replace />} />
-        <Route path="/procurement" element={<Navigate to="/dashboard" replace />} />
         <Route path="/billing" element={<Navigate to="/dashboard" replace />} />
         <Route path="/payments" element={<Navigate to="/dashboard" replace />} />
         <Route path="/accounting" element={<Navigate to="/dashboard" replace />} />

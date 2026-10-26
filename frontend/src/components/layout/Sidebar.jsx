@@ -91,6 +91,10 @@ const USER_MODULE_PATHS = [
   '/audit-logs',
   '/wishlist',
   '/reviews',
+  '/products',
+  '/categories',
+  '/warehouses',
+  '/procurement',
 ];
 
 export default function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }) {
