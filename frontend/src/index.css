@@ -62,6 +62,7 @@
   body {
     font-family: var(--font-sans);
     background-color: var(--color-surface-900);
+    color: #f1f5f9;
   }
 
   /* Custom scrollbar — dark theme */
@@ -85,6 +86,11 @@
     background-color: #111a2e;
     color: #e2e8f0;
   }
+}
+
+/* Tabular numbers for financial & inventory figures */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
 }
 
 /* ═══════════════════════════════════════════════════════════════
