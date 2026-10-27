@@ -8,28 +8,28 @@ export class AccountingController {
   constructor(private readonly accountingService: AccountingService) {}
 
   // Chart of Accounts Endpoints
-  @Post('chart-of-accounts')
+  @Post(['chart-of-accounts', 'accounting/accounts'])
   createAccount(@Body() createAccountDto: CreateAccountDto) {
     return this.accountingService.createAccount(createAccountDto);
   }
 
-  @Get('chart-of-accounts')
+  @Get(['chart-of-accounts', 'accounting/accounts'])
   findAllAccounts() {
     return this.accountingService.findAllAccounts();
   }
 
   // Journal Entries Endpoints
-  @Post('journal-entries')
+  @Post(['journal-entries', 'accounting/journal-entries'])
   createJournalEntry(@Body() createJournalEntryDto: CreateJournalEntryDto) {
     return this.accountingService.createJournalEntry(createJournalEntryDto);
   }
 
-  @Get('journal-entries')
+  @Get(['journal-entries', 'accounting/journal-entries'])
   findAllJournalEntries() {
     return this.accountingService.findAllJournalEntries();
   }
 
-  @Get('journal-entries/:id')
+  @Get(['journal-entries/:id', 'accounting/journal-entries/:id'])
   findOneJournalEntry(@Param('id') id: string) {
     return this.accountingService.findOneJournalEntry(id);
   }

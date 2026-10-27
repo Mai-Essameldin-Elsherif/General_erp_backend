@@ -2,13 +2,16 @@ import { IsString, IsDateString, IsArray, ValidateNested, IsNumber, Min, IsOptio
 import { Type } from 'class-transformer';
 
 class JournalItemDto {
+  @Type(() => Number)
   @IsNumber()
   account_id: number;
 
+  @Type(() => Number)
   @IsNumber()
   @Min(0)
   debit: number;
 
+  @Type(() => Number)
   @IsNumber()
   @Min(0)
   credit: number;

@@ -20,8 +20,12 @@ export class BillingService {
 
   async createInvoice(createDto: CreateInvoiceDto): Promise<Invoice> {
     const invoice_number = `INV-${Date.now()}`;
+    const total_amount = createDto.total_amount ?? createDto.amount ?? 0;
+    const sales_order_id = createDto.sales_order_id ?? createDto.customer_id ?? '00000000-0000-0000-0000-000000000000';
     const invoice = this.invoiceRepo.create({
-      ...createDto,
+      sales_order_id,
+      total_amount,
+      due_date: createDto.due_date,
       invoice_number,
     });
     return await this.invoiceRepo.save(invoice);

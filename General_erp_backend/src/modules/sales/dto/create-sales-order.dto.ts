@@ -2,13 +2,15 @@ import { IsString, IsNumber, IsArray, ValidateNested, IsUUID, Min } from 'class-
 import { Type } from 'class-transformer';
 
 class SalesOrderItemDto {
-  @IsUUID()
+  @IsString()
   product_id: string;
 
+  @Type(() => Number)
   @IsNumber()
   @Min(1)
   quantity: number;
 
+  @Type(() => Number)
   @IsNumber()
   @Min(0)
   unit_price: number;

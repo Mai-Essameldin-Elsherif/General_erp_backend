@@ -95,6 +95,11 @@ const USER_MODULE_PATHS = [
   '/categories',
   '/warehouses',
   '/procurement',
+  '/sales',
+  '/billing',
+  '/accounting',
+  '/crm',
+  '/customers',
 ];
 
 export default function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }) {
