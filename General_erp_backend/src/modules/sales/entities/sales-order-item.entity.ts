@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import type { Relation } from 'typeorm';
 import { SalesOrder } from './sales-order.entity.js';
 
 @Entity('sales_order_items')
@@ -8,7 +9,7 @@ export class SalesOrderItem {
 
   @ManyToOne(() => SalesOrder, (order: any) => order.items, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'sales_order_id' })
-  salesOrder: SalesOrder;
+  salesOrder: Relation<SalesOrder>;
 
   @Column({ type: 'uuid' })
   product_id: string;

@@ -5,6 +5,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  type Relation,
 } from 'typeorm';
 import { StockLevel } from './stock-level.entity.js';
 import { StockMovement } from './stock-movement.entity.js';
@@ -27,10 +28,10 @@ export class Warehouse {
   isActive: boolean;
 
   @OneToMany(() => StockLevel, (stockLevel) => stockLevel.warehouse)
-  stockLevels?: StockLevel[];
+  stockLevels?: Relation<StockLevel[]>;
 
   @OneToMany(() => StockMovement, (stockMovement) => stockMovement.warehouse)
-  stockMovements?: StockMovement[];
+  stockMovements?: Relation<StockMovement[]>;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

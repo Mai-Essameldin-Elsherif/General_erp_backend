@@ -7,6 +7,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  type Relation,
 } from 'typeorm';
 import { Vendor } from './vendor.entity.js';
 import { PurchaseOrderItem } from './purchase-order-item.entity.js';
@@ -35,7 +36,7 @@ export class PurchaseOrder {
     onDelete: 'RESTRICT',
   })
   @JoinColumn({ name: 'vendor_id' })
-  vendor?: Vendor;
+  vendor?: Relation<Vendor>;
 
   @Column({ name: 'branch_id', type: 'uuid', nullable: true })
   branchId: string | null;
@@ -45,7 +46,7 @@ export class PurchaseOrder {
 
   @ManyToOne(() => Warehouse, { onDelete: 'RESTRICT' })
   @JoinColumn({ name: 'warehouse_id' })
-  warehouse?: Warehouse;
+  warehouse?: Relation<Warehouse>;
 
   @Column({
     type: 'enum',
@@ -76,7 +77,7 @@ export class PurchaseOrder {
   @OneToMany(() => PurchaseOrderItem, (item) => item.purchaseOrder, {
     cascade: true,
   })
-  items?: PurchaseOrderItem[];
+  items?: Relation<PurchaseOrderItem[]>;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

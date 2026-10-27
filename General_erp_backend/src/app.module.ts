@@ -46,7 +46,7 @@ import { SalesModule } from './modules/sales/sales.module.js';
     UsersModule,
     BranchesModule,
     DepartmentsModule,
-    CategoriesModule,
+        CategoriesModule,
     ProductsModule,
     WarehousesModule,
     ProcurementModule,
