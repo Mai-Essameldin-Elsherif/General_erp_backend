@@ -12,6 +12,11 @@ import OrganizationPage from '../pages/organization/OrganizationPage';
 import AuditLogsPage from '../pages/audit-logs/AuditLogsPage';
 import WishlistPage from '../pages/wishlist/WishlistPage';
 import ReviewsPage from '../pages/reviews/ReviewsPage';
+import CustomersPage from '../pages/customers/CustomersPage';
+import SalesPage from '../pages/sales/SalesPage';
+import AccountingPage from '../pages/accounting/AccountingPage';
+import ProductsPage from '../pages/products/ProductsPage';
+import BillingPage from '../pages/billing/BillingPage';
 import CategoriesPage from '../pages/CategoriesPage';
 import ProductsPage from '../pages/ProductsPage';
 import WarehousesPage from '../pages/WarehousesPage';
@@ -95,6 +100,13 @@ export default function AppRoutes() {
         <Route path="/wishlist" element={<WishlistPage />} />
         <Route path="/reviews" element={<ReviewsPage />} />
 
+        {/* Teammate Modules (Redirect to Dashboard to prevent inert/blank pages) */}
+        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/categories" element={<Navigate to="/dashboard" replace />} />
+        <Route path="/warehouses" element={<Navigate to="/dashboard" replace />} />
+        <Route path="/sales" element={<SalesPage />} />
+        <Route path="/procurement" element={<Navigate to="/dashboard" replace />} />
+        <Route path="/billing" element={<BillingPage />} />
         {/* Inventory & Supply Modules */}
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/categories" element={<CategoriesPage />} />
@@ -103,8 +115,8 @@ export default function AppRoutes() {
         <Route path="/sales" element={<Navigate to="/dashboard" replace />} />
         <Route path="/billing" element={<Navigate to="/dashboard" replace />} />
         <Route path="/payments" element={<Navigate to="/dashboard" replace />} />
-        <Route path="/accounting" element={<Navigate to="/dashboard" replace />} />
-        <Route path="/crm" element={<Navigate to="/dashboard" replace />} />
+        <Route path="/accounting" element={<AccountingPage />} />
+        <Route path="/customers" element={<CustomersPage />} />
         <Route path="/settings" element={<Navigate to="/dashboard" replace />} />
       </Route>
 

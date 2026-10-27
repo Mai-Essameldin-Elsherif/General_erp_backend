@@ -15,7 +15,7 @@ export class JournalEntry {
   @Column({ type: 'text', nullable: true })
   description: string;
 
-  @OneToMany(() => JournalItem, item => item.journalEntry, { cascade: true })
+  @OneToMany(() => JournalItem, (item: any) => item.journalEntry, { cascade: true })
   items: JournalItem[];
 
   @CreateDateColumn()

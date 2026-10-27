@@ -30,8 +30,8 @@ export class AccountingService {
 
   async createJournalEntry(createDto: CreateJournalEntryDto): Promise<JournalEntry> {
     // 1. التحقق من التوازن المحاسبي: مجموع المدين يجب أن يساوي مجموع الدائن
-    const totalDebit = createDto.items.reduce((sum, item) => sum + Number(item.debit), 0);
-    const totalCredit = createDto.items.reduce((sum, item) => sum + Number(item.credit), 0);
+    const totalDebit = createDto.items.reduce((sum: number, item: any) => sum + Number(item.debit), 0);
+    const totalCredit = createDto.items.reduce((sum: number, item: any) => sum + Number(item.credit), 0);
 
     if (totalDebit !== totalCredit) {
       throw new BadRequestException(`Journal Entry is unbalanced. Debit: ${totalDebit}, Credit: ${totalCredit}`);
@@ -45,7 +45,7 @@ export class AccountingService {
     const entry_number = `JE-${Date.now()}`;
     
     // تحويل account_id إلى الشكل الذي يقبله TypeORM للعلاقات
-    const items = createDto.items.map(item => ({
+    const items = createDto.items.map((item: any) => ({
       account: { id: item.account_id },
       debit: item.debit,
       credit: item.credit,
@@ -62,6 +62,7 @@ export class AccountingService {
   }
 
   async findAllJournalEntries(): Promise<JournalEntry[]> {
+    return await this.journalRepo.find({ relations: { items: { account: true } } });
     return await this.journalRepo.find({
       relations: {
         items: {
@@ -74,6 +75,7 @@ export class AccountingService {
   async findOneJournalEntry(id: string): Promise<JournalEntry> {
     const entry = await this.journalRepo.findOne({
       where: { id },
+      relations: { items: { account: true } } 
       relations: {
         items: {
           account: true,

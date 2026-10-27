@@ -28,7 +28,7 @@ export class SalesOrder {
   @Column({ type: 'decimal', precision: 12, scale: 2, default: 0 })
   total_amount: number;
 
-  @OneToMany(() => SalesOrderItem, item => item.salesOrder, { cascade: true })
+  @OneToMany(() => SalesOrderItem, (item: any) => item.salesOrder, { cascade: true })
   items: SalesOrderItem[];
 
   @CreateDateColumn()

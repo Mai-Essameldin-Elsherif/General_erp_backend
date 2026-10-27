@@ -14,7 +14,7 @@ export class SalesService {
 
   async create(createDto: CreateSalesOrderDto): Promise<SalesOrder> {
     // حساب الإجمالي أوتوماتيكياً
-    const total_amount = createDto.items.reduce((sum, item) => sum + (item.quantity * item.unit_price), 0);
+    const total_amount = createDto.items.reduce((sum: number, item: any) => sum + (item.quantity * item.unit_price), 0);
     
     // توليد رقم أمر البيع (يمكن تطويره لاحقاً ليكون تسلسلياً)
     const order_number = `SO-${Date.now()}`;
@@ -30,6 +30,7 @@ export class SalesService {
   }
 
   async findAll(): Promise<SalesOrder[]> {
+    return await this.salesOrderRepo.find({ relations: { customer: true, items: true } });
     return await this.salesOrderRepo.find({
       relations: {
         customer: true,
@@ -41,6 +42,7 @@ export class SalesService {
   async findOne(id: string): Promise<SalesOrder> {
     const order = await this.salesOrderRepo.findOne({
       where: { id },
+      relations: { customer: true, items: true } 
       relations: {
         customer: true,
         items: true,

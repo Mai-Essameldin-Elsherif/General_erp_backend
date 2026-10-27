@@ -7,7 +7,7 @@ export class JournalItem {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => JournalEntry, entry => entry.items, { onDelete: 'CASCADE' })
+  @ManyToOne(() => JournalEntry, (entry: any) => entry.items, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'journal_entry_id' })
   journalEntry: JournalEntry;
 
