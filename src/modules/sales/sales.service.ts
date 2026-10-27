@@ -31,14 +31,24 @@ export class SalesService {
 
   async findAll(): Promise<SalesOrder[]> {
     return await this.salesOrderRepo.find({ relations: { customer: true, items: true } });
+    return await this.salesOrderRepo.find({
+      relations: {
+        customer: true,
+        items: true,
+      },
+    });
   }
 
   async findOne(id: string): Promise<SalesOrder> {
-    const order = await this.salesOrderRepo.findOne({ 
+    const order = await this.salesOrderRepo.findOne({
       where: { id },
       relations: { customer: true, items: true } 
+      relations: {
+        customer: true,
+        items: true,
+      },
     });
-    
+
     if (!order) {
       throw new NotFoundException(`Sales Order with ID ${id} not found`);
     }

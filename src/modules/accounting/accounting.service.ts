@@ -63,14 +63,26 @@ export class AccountingService {
 
   async findAllJournalEntries(): Promise<JournalEntry[]> {
     return await this.journalRepo.find({ relations: { items: { account: true } } });
+    return await this.journalRepo.find({
+      relations: {
+        items: {
+          account: true,
+        },
+      },
+    });
   }
 
   async findOneJournalEntry(id: string): Promise<JournalEntry> {
-    const entry = await this.journalRepo.findOne({ 
+    const entry = await this.journalRepo.findOne({
       where: { id },
       relations: { items: { account: true } } 
+      relations: {
+        items: {
+          account: true,
+        },
+      },
     });
-    
+
     if (!entry) {
       throw new NotFoundException(`Journal Entry ${id} not found`);
     }

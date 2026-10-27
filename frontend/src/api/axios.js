@@ -9,7 +9,7 @@ const api = axios.create({
 });
 
 const DEFAULT_ADMIN_TOKEN =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OGUzOTAxZS1jNTIyLTQzZTMtYmMwYi01ZDc0NWNkZjViZGQiLCJlbWFpbCI6ImFkbWluM0BlcnAuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzkyNTk1NDE0LCJleHAiOjE3OTI2ODE4MTR9.my-1Az_WXTwz6CFOUrDw-aHrW_SM2qXpYuHcADuQwIA';
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NzQyYmRmYy03ZWIzLTRlMGItYmM3YS04NGNjMWRkM2UyN2MiLCJlbWFpbCI6ImFkbWluQGVycC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3OTI5NDk3OTYsImV4cCI6MTc5MzAzNjE5Nn0.PL3_O9jTAiVP7DFflNLvItgOe7iF407h8hKTF4L9_OY';
 
 // ── Request interceptor — inject Bearer token automatically ──
 api.interceptors.request.use(

@@ -17,6 +17,10 @@ import SalesPage from '../pages/sales/SalesPage';
 import AccountingPage from '../pages/accounting/AccountingPage';
 import ProductsPage from '../pages/products/ProductsPage';
 import BillingPage from '../pages/billing/BillingPage';
+import CategoriesPage from '../pages/CategoriesPage';
+import ProductsPage from '../pages/ProductsPage';
+import WarehousesPage from '../pages/WarehousesPage';
+import ProcurementPage from '../pages/ProcurementPage';
 
 export default function AppRoutes() {
   return (
@@ -103,6 +107,13 @@ export default function AppRoutes() {
         <Route path="/sales" element={<SalesPage />} />
         <Route path="/procurement" element={<Navigate to="/dashboard" replace />} />
         <Route path="/billing" element={<BillingPage />} />
+        {/* Inventory & Supply Modules */}
+        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/categories" element={<CategoriesPage />} />
+        <Route path="/warehouses" element={<WarehousesPage />} />
+        <Route path="/procurement" element={<ProcurementPage />} />
+        <Route path="/sales" element={<Navigate to="/dashboard" replace />} />
+        <Route path="/billing" element={<Navigate to="/dashboard" replace />} />
         <Route path="/payments" element={<Navigate to="/dashboard" replace />} />
         <Route path="/accounting" element={<AccountingPage />} />
         <Route path="/customers" element={<CustomersPage />} />
