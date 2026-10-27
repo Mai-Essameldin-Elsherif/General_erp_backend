@@ -4,6 +4,7 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
+  type Relation,
 } from 'typeorm';
 import { PurchaseOrder } from './purchase-order.entity.js';
 import { Product } from '../../products/entities/product.entity.js';
@@ -20,14 +21,14 @@ export class PurchaseOrderItem {
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'purchase_order_id' })
-  purchaseOrder?: PurchaseOrder;
+  purchaseOrder?: Relation<PurchaseOrder>;
 
   @Column({ name: 'product_id', type: 'uuid' })
   productId: string;
 
   @ManyToOne(() => Product, { onDelete: 'RESTRICT' })
   @JoinColumn({ name: 'product_id' })
-  product?: Product;
+  product?: Relation<Product>;
 
   @Column({ type: 'decimal', precision: 12, scale: 2 })
   quantity: number;

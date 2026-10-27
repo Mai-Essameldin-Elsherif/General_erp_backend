@@ -46,15 +46,14 @@ import { SalesModule } from './modules/sales/sales.module.js';
     UsersModule,
     BranchesModule,
     DepartmentsModule,
-    // Modules temporarily disabled until teammates resolve entity circular dependencies:
-    // CategoriesModule,
-    // ProductsModule,
-    // WarehousesModule,
-    // ProcurementModule,
-    // AccountingModule,
-    // BillingModule,
-    // CrmModule,
-    // SalesModule,
+        CategoriesModule,
+    ProductsModule,
+    WarehousesModule,
+    ProcurementModule,
+    AccountingModule,
+    BillingModule,
+    CrmModule,
+    SalesModule,
   ],
 })
 export class AppModule {}

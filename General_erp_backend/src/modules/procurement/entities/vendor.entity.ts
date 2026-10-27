@@ -5,6 +5,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  type Relation,
 } from 'typeorm';
 import { PurchaseOrder } from './purchase-order.entity.js';
 
@@ -38,7 +39,7 @@ export class Vendor {
   isActive: boolean;
 
   @OneToMany(() => PurchaseOrder, (po) => po.vendor)
-  purchaseOrders?: PurchaseOrder[];
+  purchaseOrders?: Relation<PurchaseOrder[]>;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

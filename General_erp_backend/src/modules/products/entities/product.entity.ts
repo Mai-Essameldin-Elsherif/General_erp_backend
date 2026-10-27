@@ -7,6 +7,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  type Relation,
 } from 'typeorm';
 import { ProductCategory } from '../../categories/entities/category.entity.js';
 import { StockLevel } from '../../warehouses/entities/stock-level.entity.js';
@@ -25,7 +26,7 @@ export class Product {
     nullable: true,
   })
   @JoinColumn({ name: 'category_id' })
-  category?: ProductCategory | null;
+  category?: Relation<ProductCategory> | null;
 
   @Column({ type: 'varchar', length: 100, unique: true })
   sku: string;
@@ -67,10 +68,10 @@ export class Product {
   imageUrl: string | null;
 
   @OneToMany(() => StockLevel, (stockLevel) => stockLevel.product)
-  stockLevels?: StockLevel[];
+  stockLevels?: Relation<StockLevel[]>;
 
   @OneToMany(() => StockMovement, (stockMovement) => stockMovement.product)
-  stockMovements?: StockMovement[];
+  stockMovements?: Relation<StockMovement[]>;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

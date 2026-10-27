@@ -8,6 +8,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  type Relation,
 } from 'typeorm';
 import { Product } from '../../products/entities/product.entity.js';
 
@@ -33,7 +34,7 @@ export class ProductCategory {
   subCategories?: ProductCategory[];
 
   @OneToMany(() => Product, (product) => product.category)
-  products?: Product[];
+  products?: Relation<Product[]>;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

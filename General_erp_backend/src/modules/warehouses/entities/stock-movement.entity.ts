@@ -5,6 +5,7 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
+  type Relation,
 } from 'typeorm';
 import { Product } from '../../products/entities/product.entity.js';
 import { Warehouse } from './warehouse.entity.js';
@@ -52,13 +53,13 @@ export class StockMovement {
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'product_id' })
-  product?: Product;
+  product?: Relation<Product>;
 
   @ManyToOne(() => Warehouse, (warehouse) => warehouse.stockMovements, {
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'warehouse_id' })
-  warehouse?: Warehouse;
+  warehouse?: Relation<Warehouse>;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

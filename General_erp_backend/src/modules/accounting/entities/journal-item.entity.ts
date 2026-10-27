@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import type { Relation } from 'typeorm';
 import { JournalEntry } from './journal-entry.entity.js';
 import { ChartOfAccount } from './chart-of-account.entity.js';
 
@@ -9,7 +10,7 @@ export class JournalItem {
 
   @ManyToOne(() => JournalEntry, (entry: any) => entry.items, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'journal_entry_id' })
-  journalEntry: JournalEntry;
+  journalEntry: Relation<JournalEntry>;
 
   @ManyToOne(() => ChartOfAccount)
   @JoinColumn({ name: 'account_id' })
