@@ -3,7 +3,7 @@ import { SalesService } from './sales.service.js';
 import { CreateSalesOrderDto } from './dto/create-sales-order.dto.js';
 import { UpdateOrderStatusDto } from './dto/update-order-status.dto.js';
 
-@Controller('api/v1/sales-orders')
+@Controller(['api/v1/sales-orders', 'api/v1/sales'])
 export class SalesController {
   constructor(private readonly salesService: SalesService) {}
 

@@ -9,22 +9,22 @@ export class BillingController {
   constructor(private readonly billingService: BillingService) {}
 
   // Invoices Endpoints
-  @Post('invoices')
+  @Post(['invoices', 'billing'])
   createInvoice(@Body() createInvoiceDto: CreateInvoiceDto) {
     return this.billingService.createInvoice(createInvoiceDto);
   }
 
-  @Get('invoices')
+  @Get(['invoices', 'billing'])
   findAllInvoices() {
     return this.billingService.findAllInvoices();
   }
 
-  @Get('invoices/:id')
+  @Get(['invoices/:id', 'billing/:id'])
   findOneInvoice(@Param('id') id: string) {
     return this.billingService.findOneInvoice(id);
   }
 
-  @Patch('invoices/:id/status')
+  @Patch(['invoices/:id/status', 'billing/:id/status'])
   updateInvoiceStatus(
     @Param('id') id: string, 
     @Body() updateInvoiceStatusDto: UpdateInvoiceStatusDto
