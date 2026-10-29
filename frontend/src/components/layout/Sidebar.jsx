@@ -100,6 +100,7 @@ const USER_MODULE_PATHS = [
   '/accounting',
   '/crm',
   '/customers',
+  '/payments',
 ];
 
 export default function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }) {

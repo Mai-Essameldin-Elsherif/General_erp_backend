@@ -20,6 +20,7 @@ import CategoriesPage from '../pages/CategoriesPage';
 import ProductsPage from '../pages/ProductsPage';
 import WarehousesPage from '../pages/WarehousesPage';
 import ProcurementPage from '../pages/ProcurementPage';
+import PaymentsPage from '../pages/PaymentsPage';
 
 export default function AppRoutes() {
   return (
@@ -112,7 +113,7 @@ export default function AppRoutes() {
         <Route path="/billing" element={<BillingPage />} />
         <Route path="/accounting" element={<AccountingPage />} />
 
-        <Route path="/payments" element={<Navigate to="/dashboard" replace />} />
+        <Route path="/payments" element={<PaymentsPage />} />
         <Route path="/settings" element={<Navigate to="/dashboard" replace />} />
       </Route>
 

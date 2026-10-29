@@ -19,9 +19,11 @@ export default function LoginPage() {
       await login(email, password);
     } catch (err) {
       console.error('Login error:', err);
-      const msg = err.response?.data?.message || 'Invalid email or password. Please verify your credentials.';
-      setError(typeof msg === 'string' ? msg : JSON.stringify(msg));
-    } finally {
+      const isNetworkError = !err.response;
+      const msg = isNetworkError
+        ? 'Cannot connect to server. Make sure the backend is running on port 3000.'
+        : err.response?.data?.message || 'Invalid email or password. Please verify your credentials.';
+      setError(typeof msg === 'string' ? msg : JSON.stringify(msg));    } finally {
       setLoading(false);
     }
   };
